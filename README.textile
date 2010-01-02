@@ -1,0 +1,11 @@
+h1. JavaScriptObject
+
+JavaScriptObject is an application to publish 3D models in a userfriendly way. It does not require any applets, plugins or similar. JavaScriptObject works with every browser, that can handle images and supports JavaScript: And that is something almost 100% of all conventional graphical browsers can do.
+
+The principle is simple: A 3D model is rotated by a given step width around two axes. An image of the model is rendered at each step. After a full revolution around both axes one has a "complete" frameset of the object. Finally the JavaScript shows a single frame out of the image pool in relation to the mouse position and thereby creates the illusion of an 3D object.
+
+The advantage of this solution lies in the offline rendering of the frames which allows high image qualities. JavaScriptObject enables a cross-platform presentation of 3D content with minimal system requirements.
+
+h2. Project Info
+
+* *Website*: "http://finnrudolph.de/JavaScriptObject":http://finnrudolph.de/JavaScriptObject
