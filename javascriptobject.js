@@ -260,7 +260,14 @@ function JavaScriptObject ()
 				my.loadingDiv.style.display = 'none';
 
 				/* Display start image */
-				my.frameArray[my.Object.startRow][my.Object.startCol].style.display = 'block';
+				var startImage = my.frameArray[my.Object.startRow][my.Object.startCol];
+				if(typeof startImage === 'undefined')
+				{
+					my.Object.startRow = 0;
+					my.Object.startCol = 0;
+					startImage = my.frameArray[0][0];
+				}
+				startImage.style.display = 'block';
 	
 				/* Initialize core components */
 				my.Mouse.init();
@@ -271,18 +278,20 @@ function JavaScriptObject ()
 				my.Renderer.col = my.Object.startCol;
 
 				/* Calculate corresponding mouse coordinates for startRow and startCol */
-				var stepX = my.Object.width / (my.Object.resX-1);
-				var stopX = Math.round( stepX * my.Object.startCol );
-				
-				var stepY = my.Object.height / (my.Object.resY-1);
-				var stopY = Math.round( stepY * my.Object.startRow );
-
-				if(my.Object.resY < 1)
+				var stopX = 0;
+				if(my.Object.resX > 1)
 				{
-					stopY = 0;
+					var stepX = my.Object.height / (my.Object.resX-1);
+					stopX = Math.round( stepX * my.Object.startCol );
 				}
 				
-
+				var stopY = 0;
+				if(my.Object.resY > 1)
+				{
+					var stepY = my.Object.height / (my.Object.resY-1);
+					stopY = Math.round( stepY * my.Object.startRow );
+				}
+				
 				/* Set mouse coordinates */
 				my.Mouse.x = stopX;
 				my.Mouse.y = stopY;
@@ -414,7 +423,7 @@ function JavaScriptObject ()
 				
 				/* Rotation is endless if the object is not locked */
 				var isEndless = (my.lock) ? false : true;
-				
+
 				/* Map x-axis mouse coordinates in range of the object width */
 				if(newX < 0)
 				{
@@ -478,6 +487,7 @@ function JavaScriptObject ()
 					}
 					newY = my.Object.height;
 				}
+				
 				my.Mouse.x = newX;
 				my.Mouse.y = newY;
 				my.Helper.suppressBrowserDefault(e);
@@ -488,7 +498,7 @@ function JavaScriptObject ()
 		{
 			/* Set closedhand cursor */
 			my.imagesDiv.style.cursor = 'url(cursor_closedhand.cur), move';	
-			
+
 			my.Mouse.startX = my.Helper.mouseX(e);
 			my.Mouse.startY = my.Helper.mouseY(e);
 			my.Mouse.busy = true;
