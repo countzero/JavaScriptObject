@@ -1,0 +1,417 @@
+<!DOCTYPE PATCH  SYSTEM "http://vvvv.org/versions/vvvv40beta20.dtd" >
+   <PATCH nodename="C:\Dokumente und Einstellungen\Finn Rudolph\Desktop\JavaScriptObject 0.8\exportFromVVVV\ObjectFrameGenerator help.v4p">
+   <BOUNDS height="12705" left="0" top="0" type="Window" width="13680">
+   </BOUNDS>
+   <NODE componentmode="InAWindow" id="21" nodename="Renderer (EX9)">
+   <BOUNDS height="0" left="1350" top="7050" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="1800" left="1350" top="7050" type="Box" width="2400">
+   </BOUNDS>
+   <BOUNDS height="6360" left="13680" top="6345" type="Window" width="6120">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Scene">
+   </PIN>
+   <PIN pinname="Layers" visible="1">
+   </PIN>
+   <PIN pinname="Projection Transform" visible="1">
+   </PIN>
+   <PIN pinname="Windowed Depthbuffer Format" slicecount="1" values="D24X8">
+   </PIN>
+   <PIN pinname="Fullscreen Depthbuffer Format" slicecount="1" values="D24X8">
+   </PIN>
+   <PIN pinname="Windowed Antialiasing Quality Level" slicecount="1" values="8">
+   </PIN>
+   <PIN pinname="View Transform" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InAWindow" id="20" nodename="Renderer (EX9)">
+   <BOUNDS height="0" left="630" top="7995" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="1800" left="630" top="7995" type="Box" width="2400">
+   </BOUNDS>
+   <BOUNDS height="6360" left="13665" top="0" type="Window" width="6120">
+   </BOUNDS>
+   <PIN pinname="Descriptive Name" slicecount="1" values="View">
+   </PIN>
+   <PIN pinname="Layers" visible="1">
+   </PIN>
+   <PIN pinname="View Transform" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Windowed Depthbuffer Format" slicecount="1" values="D24X8">
+   </PIN>
+   <PIN pinname="Fullscreen Depthbuffer Format" slicecount="1" values="D24X8">
+   </PIN>
+   <PIN pinname="Projection Transform" slicecount="1" visible="1" values="||">
+   </PIN>
+   <PIN pinname="Windowed Antialiasing Quality Level" slicecount="1" values="8">
+   </PIN>
+   <PIN pinname="Background Color" slicecount="1" visible="1" values="|1.00000,1.00000,1.00000,1.00000|">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="19" nodename="Teapot (EX9.Geometry)">
+   <BOUNDS height="0" left="765" top="3015" type="Node" width="0">
+   </BOUNDS>
+   <PIN pinname="Mesh" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" id="18" nodename="Group (EX9)">
+   <BOUNDS height="0" left="1365" top="6465" type="Node" width="0">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Layer 1" visible="1">
+   </PIN>
+   <PIN pinname="Layer 2" visible="1">
+   </PIN>
+   <PIN pinname="Layer Template Count" slicecount="1" values="3">
+   </PIN>
+   <PIN pinname="Layer 3" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="21" dstpinname="Layers" srcnodeid="18" srcpinname="Layer">
+   </LINK>
+   <NODE componentmode="Hidden" id="17" nodename=":MODULES:\vvvv group\EX9\AxisAndGrid (DX9).v4p" path="C:\Programme\vvvv_40beta20\modules\vvvv group\EX9\">
+   <BOUNDS height="0" left="1545" top="5895" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="3600" left="1545" top="5895" type="Box" width="4800">
+   </BOUNDS>
+   <BOUNDS height="6000" left="15465" top="10245" type="Window" width="9000">
+   </BOUNDS>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="18" dstpinname="Layer 2" srcnodeid="17" srcpinname="Layer">
+   </LINK>
+   <NODE componentmode="Hidden" id="16" nodename=":MODULES:\vvvv group\Transform\Camera (Transform Softimage).v4p" path="C:\Programme\vvvv_40beta20\modules\vvvv group\Transform\">
+   <BOUNDS height="0" left="2355" top="6420" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="3600" left="2355" top="6420" type="Box" width="4800">
+   </BOUNDS>
+   <BOUNDS height="6000" left="13530" top="9330" type="Window" width="9000">
+   </BOUNDS>
+   <PIN pinname="View Projection" visible="1">
+   </PIN>
+   <PIN pinname="View" visible="1">
+   </PIN>
+   <PIN pinname="Projection" visible="1">
+   </PIN>
+   <PIN pinname="Inital Distance" slicecount="1" values="2.5">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="15" nodename="IOBox (Value Advanced)">
+   <BOUNDS height="0" left="6825" top="1470" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="240" left="6825" top="1470" type="Box" width="960">
+   </BOUNDS>
+   <BOUNDS height="160" left="7995" top="1500" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Y Input Value" slicecount="1" values="24">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Images per Revolution|">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="14" nodename="IOBox (Value Advanced)">
+   <BOUNDS height="0" left="5685" top="975" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="735" left="5685" top="975" type="Box" width="735">
+   </BOUNDS>
+   <BOUNDS height="160" left="11160" top="2640" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Slider" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Slider Behavior" slicecount="1" values="Bang">
+   </PIN>
+   <PIN pinname="Y Output Value" visible="1">
+   </PIN>
+   <PIN pinname="X Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Y Input Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Generate!">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="13" nodename="IOBox (Enumerations)">
+   <BOUNDS height="0" left="10425" top="1470" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="240" left="10425" top="1470" type="Box" width="675">
+   </BOUNDS>
+   <BOUNDS height="160" left="11115" top="2505" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Output Enum" visible="1">
+   </PIN>
+   <PIN pinname="Input Enum" slicecount="1" values="JPG">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|File Type|">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="12" nodename="IOBox (String)">
+   <BOUNDS height="0" left="8445" top="4200" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="315" left="8445" top="4200" type="Box" width="2025">
+   </BOUNDS>
+   <BOUNDS height="160" left="10800" top="4950" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Currently Saving|">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="11" nodename="IOBox (String)">
+   <BOUNDS height="0" left="9060" top="1470" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="240" left="9060" top="1470" type="Box" width="1230">
+   </BOUNDS>
+   <BOUNDS height="160" left="9600" top="1500" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" values="C:\Temp\">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Output Path|">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="10" nodename="IOBox (String)">
+   <BOUNDS height="255" left="0" top="375" type="Node" width="570">
+   </BOUNDS>
+   <BOUNDS height="270" left="0" top="375" type="Box" width="3960">
+   </BOUNDS>
+   <BOUNDS height="160" left="12030" top="45225" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="http://finnrudolph.de/JavaScriptObject">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="9" nodename="IOBox (String)">
+   <BOUNDS height="270" left="0" top="0" type="Node" width="915">
+   </BOUNDS>
+   <BOUNDS height="375" left="0" top="0" type="Box" width="4530">
+   </BOUNDS>
+   <BOUNDS height="160" left="12030" top="45225" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|ObjectFrameGenerator 0.2|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Size" slicecount="1" values="12">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="21" dstpinname="View Transform" srcnodeid="16" srcpinname="View">
+   </LINK>
+   <LINK dstnodeid="21" dstpinname="Projection Transform" srcnodeid="16" srcpinname="Projection">
+   </LINK>
+   <NODE componentmode="Hidden" id="8" nodename=":EFFECTS:\PhongPoint.fx">
+   <BOUNDS height="0" left="630" top="4755" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="6000" left="630" top="4755" type="Box" width="6000">
+   </BOUNDS>
+   <BOUNDS height="12000" left="6585" top="10335" type="Window" width="12000">
+   </BOUNDS>
+   <PIN pinname="Light Position XYZ" visible="1">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Mesh" visible="1">
+   </PIN>
+   <PIN pinname="Transform" visible="1">
+   </PIN>
+   <PIN pinname="Power" slicecount="1" values="50">
+   </PIN>
+   <PIN pinname="Light Range" slicecount="1" values="6.2">
+   </PIN>
+   <PIN pinname="Light Attenuation 1" slicecount="1" values="0.56">
+   </PIN>
+   <PIN pinname="Light Attenuation 0" slicecount="1" values="0.55">
+   </PIN>
+   <PIN pinname="Light Attenuation 2" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="18" dstpinname="Layer 1" linkstyle="VHV" srcnodeid="8" srcpinname="Layer">
+   <LINKPOINT x="660" y="5775">
+   </LINKPOINT>
+   <LINKPOINT x="1395" y="5775">
+   </LINKPOINT>
+   </LINK>
+   <LINK dstnodeid="8" dstpinname="Mesh" srcnodeid="19" srcpinname="Mesh">
+   </LINK>
+   <LINK dstnodeid="20" dstpinname="Layers" srcnodeid="8" srcpinname="Layer">
+   </LINK>
+   <NODE componentmode="Hidden" id="7" nodename=":MODULES:\vvvv group\EX9\Light (EX9 Point).v4p" path="C:\Programme\vvvv_40beta20\modules\vvvv group\EX9\">
+   <BOUNDS height="0" left="1095" top="4185" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="3600" left="1095" top="4185" type="Box" width="4800">
+   </BOUNDS>
+   <BOUNDS height="11115" left="6510" top="6000" type="Window" width="12645">
+   </BOUNDS>
+   <PIN pinname="Light Position Out" visible="1">
+   </PIN>
+   <PIN pinname="Layer" visible="1">
+   </PIN>
+   <PIN pinname="Light Position" slicecount="3" visible="1" values="-0.4500000333786,0.62000000715256,-1.00999997615814">
+   </PIN>
+   <PIN pinname="Scale" slicecount="1" values="1.87">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="18" dstpinname="Layer 3" srcnodeid="7" srcpinname="Layer">
+   </LINK>
+   <LINK dstnodeid="8" dstpinname="Light Position XYZ" srcnodeid="7" srcpinname="Light Position Out">
+   </LINK>
+   <NODE componentmode="InABox" id="6" nodename="IOBox (String)">
+   <BOUNDS height="0" left="7065" top="3270" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="240" left="7065" top="3270" type="Box" width="690">
+   </BOUNDS>
+   <BOUNDS height="160" left="9075" top="7080" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="Progress">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="5" nodename="IOBox (String)">
+   <BOUNDS height="0" left="8340" top="3270" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="240" left="8340" top="3270" type="Box" width="795">
+   </BOUNDS>
+   <BOUNDS height="160" left="11175" top="7665" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Total Frames|">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="4" nodename="IOBox (Value Advanced)">
+   <BOUNDS height="0" left="11370" top="3195" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="480" left="11370" top="3195" type="Box" width="480">
+   </BOUNDS>
+   <BOUNDS height="160" left="14595" top="7140" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Show Value" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Show Slider" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Minimum" slicecount="1" values="0">
+   </PIN>
+   <PIN pinname="Maximum" slicecount="1" values="1">
+   </PIN>
+   <PIN pinname="Slider Behavior" slicecount="1" values="Toggle">
+   </PIN>
+   <PIN pinname="Y Input Value" visible="1">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|I&apos;m OK|">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="3" nodename="IOBox (String)">
+   <BOUNDS height="0" left="11760" top="1470" type="Node" width="0">
+   </BOUNDS>
+   <BOUNDS height="240" left="11760" top="1470" type="Box" width="795">
+   </BOUNDS>
+   <BOUNDS height="160" left="15840" top="4620" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" values="View">
+   </PIN>
+   <PIN pinname="Descriptive Name" slicecount="1" values="|Renderer Name|">
+   </PIN>
+   <PIN pinname="Output String" visible="1">
+   </PIN>
+   </NODE>
+   <NODE componentmode="InABox" id="2" nodename="IOBox (String)">
+   <BOUNDS height="270" left="9075" top="7455" type="Node" width="885">
+   </BOUNDS>
+   <BOUNDS height="4605" left="9075" top="7455" type="Box" width="3465">
+   </BOUNDS>
+   <BOUNDS height="160" left="0" top="0" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="|The ObjectFrameGenerator is a patch to automatically render and save frames of an 3D object to publish it with the JavaScriptObject application on the internet.&cr;&lf;&cr;&lf;The purpose of this patch is to generate frames to create the illusion of an 3D object which can be rotated around the x and y-axis within a graphical browser.&cr;&lf;&cr;&lf;The patch rotates the object 360 degrees around the y-axis by the given accuracy (Images per Revolution) then rotates the object by the given accuracy around the x-axis and again makes a revolution around the y-axis. This procedure continues until a full rotation around the x-axis has been performed. At each rotation step the rendered frame will be saved as an image to the given output path.|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   <NODE componentmode="Hidden" debug="0" id="1" nodename="ObjectFrameGenerator.v4p" path="C:\Dokumente und Einstellungen\Finn Rudolph\Desktop\JavaScriptObject 0.8\exportFromVVVV\">
+   <BOUNDS height="270" left="6345" top="2415" type="Node" width="5490">
+   </BOUNDS>
+   <BOUNDS left="6345" top="2415" type="Box">
+   </BOUNDS>
+   <PIN pinname="Renderer Name" visible="1">
+   </PIN>
+   <PIN pinname="File Type" visible="1">
+   </PIN>
+   <PIN pinname="Frame Output Path" visible="1">
+   </PIN>
+   <PIN pinname="Accuracy in Degrees" visible="1">
+   </PIN>
+   <PIN pinname="Generate" visible="1">
+   </PIN>
+   <PIN pinname="Progress" visible="1">
+   </PIN>
+   <PIN pinname="Total Frames" visible="1">
+   </PIN>
+   <PIN pinname="Frames per Rotation" visible="1">
+   </PIN>
+   <PIN pinname="Currently Saving" visible="1">
+   </PIN>
+   <PIN pinname="OK" visible="1">
+   </PIN>
+   <PIN pinname="Rotation Transform" visible="1">
+   </PIN>
+   <BOUNDS height="12960" left="7080" top="1410" type="Window" width="16680">
+   </BOUNDS>
+   <PIN pinname="Images per Revolution" visible="1">
+   </PIN>
+   </NODE>
+   <LINK dstnodeid="1" dstpinname="Renderer Name" srcnodeid="3" srcpinname="Output String">
+   </LINK>
+   <LINK dstnodeid="1" dstpinname="File Type" srcnodeid="13" srcpinname="Output Enum">
+   </LINK>
+   <LINK dstnodeid="1" dstpinname="Frame Output Path" srcnodeid="11" srcpinname="Output String">
+   </LINK>
+   <LINK dstnodeid="1" dstpinname="Generate" srcnodeid="14" srcpinname="Y Output Value">
+   </LINK>
+   <LINK dstnodeid="6" dstpinname="Input String" srcnodeid="1" srcpinname="Progress">
+   </LINK>
+   <LINK dstnodeid="5" dstpinname="Input String" srcnodeid="1" srcpinname="Total Frames">
+   </LINK>
+   <LINK dstnodeid="12" dstpinname="Input String" srcnodeid="1" srcpinname="Currently Saving">
+   </LINK>
+   <LINK dstnodeid="4" dstpinname="Y Input Value" srcnodeid="1" srcpinname="OK">
+   </LINK>
+   <LINK dstnodeid="8" dstpinname="Transform" srcnodeid="1" srcpinname="Rotation Transform">
+   <LINKPOINT x="6375" y="3705">
+   </LINKPOINT>
+   <LINKPOINT x="975" y="3705">
+   </LINKPOINT>
+   </LINK>
+   <LINK dstnodeid="1" dstpinname="Images per Revolution" srcnodeid="15" srcpinname="Y Output Value">
+   </LINK>
+   <NODE componentmode="InABox" id="0" nodename="IOBox (String)">
+   <BOUNDS height="270" left="2820" top="3555" type="Node" width="1545">
+   </BOUNDS>
+   <BOUNDS height="285" left="2820" top="3555" type="Box" width="1560">
+   </BOUNDS>
+   <BOUNDS height="160" left="0" top="0" type="Window" width="215">
+   </BOUNDS>
+   <PIN pinname="Input String" slicecount="1" visible="0" values="| Rotation Transform|">
+   </PIN>
+   <PIN pinname="Output String" visible="0">
+   </PIN>
+   <PIN pinname="Show Grid" slicecount="1" values="0">
+   </PIN>
+   </NODE>
+   </PATCH>

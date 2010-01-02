@@ -1,0 +1,82 @@
+/*
+Name:       C.O.F.F.E.E. Object Rotator for JavaScriptObject
+Version:    0.1 (July 30 2009)
+Author:     Finn Rudolph
+Support:    http://finnrudolph.de/JavaScriptObject/CINEMA_4D
+
+Licence:    This script is licensed under a Creative Commons
+            Attribution-Noncommercial 3.0 Unported License
+            (http://creativecommons.org/licenses/by-nc/3.0/).
+
+            You are free:
+                + to Share - to copy, distribute and transmit the work
+                + to Remix - to adapt the work
+
+            Under the following conditions:
+                + Attribution. You must attribute the work in the manner specified by the author or licensor
+                  (but not in any way that suggests that they endorse you or your use of the work).
+                + Noncommercial. You may not use this work for commercial purposes.
+
+            + For any reuse or distribution, you must make clear to others the license terms of this work.
+            + Any of the above conditions can be waived if you get permission from the copyright holder.
+            + Nothing in this license impairs or restricts the author's moral rights.
+*/
+
+/* Rotate an object */
+var imagesPerRevolution = 20;	// Images per revolution around the x and y-axis
+
+main(doc,op)
+{
+	var stepWidth = 360/imagesPerRevolution;
+
+	/* Reset object rotation */
+	var rotation = vector(0,0,0);
+	op->SetRotation(rotation);
+	
+	/* Get current frame number*/
+	var t = doc->GetTime();
+	var currentFrame = t->GetFrame(doc->GetFps());
+	
+	/* Set x and y rotation of the object in relation to the frame number */
+	var xRevolutionCount = int(currentFrame / imagesPerRevolution);
+	var yRevolutionCount = int(currentFrame) - (xRevolutionCount * imagesPerRevolution);
+	var xRotationDegree = stepWidth*currentFrame - (xRevolutionCount * 360);
+	var yRotationDegree = stepWidth*xRevolutionCount;
+	rotation.x = Radians(xRotationDegree);
+	rotation.y = Radians(yRotationDegree);
+	op->SetRotation(rotation);
+
+	/* Reset Save Path and Name Format of the renderer - Example: "_tmp_0001.jpg" */
+	renderdata()#RDATA_NAMEFORMAT = 0;
+	var targetDirectory = new(Filename);
+	targetDirectory = renderdata()#RDATA_PATH;
+	var fileNamePrefix = stradd("_tmp_",tostring(imagesPerRevolution,".3d"),"_");
+	targetDirectory->SetLastString(fileNamePrefix);
+	renderdata()#RDATA_PATH = targetDirectory;
+
+	/* Console output */
+	var fileSuffix = "???";
+	switch (renderdata()#RDATA_FORMAT)
+	{
+		case 1102:
+			fileSuffix = "bmp";
+			break;
+
+		case 1104:
+			fileSuffix = "jpg";
+			break;
+
+		case 1106:
+			fileSuffix = "psd";
+			break;
+
+		case 1110:
+			fileSuffix = "tif";
+			break;
+	}
+	var fullFilePath = stradd(targetDirectory->GetFullString(), tostring(int(currentFrame),".4d"), ".", fileSuffix);
+	print(tostring(int(currentFrame),".4d"),"F: ");
+	print("y",tostring(int(xRotationDegree),".3d"),"° ");
+	print("x",tostring(int(yRotationDegree),".3d"),"° ");
+	println(" -> ",fullFilePath);
+}

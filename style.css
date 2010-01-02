@@ -1,0 +1,65 @@
+@charset "utf-8";
+
+/* CSS 2.1
+==================================== */
+
+@media all {
+	img { border: 0; }
+}
+
+/* General Site Style Settings
+==================================== */
+@media screen, projection, print {
+	* { 
+		font-family: verdana, arial, helvetica, sans-serif;
+		font-size: 100.01%;
+		margin:0;
+		padding:0;
+	}
+	html {
+		height: 100%;
+		width: 100%;
+		background: #fff;
+	}
+	body {
+		color: #000;
+		font-size: 0.8em;
+		line-height: 1.4em;
+		margin:0 auto;
+		width:350px;
+	}
+	h1 {
+		font-size: 2.2em;
+		padding: 0.7em 0 1em 0;
+		text-align: center;
+	}
+	p{
+		padding-top:8px;
+		text-align: center;
+		margin:0;
+	}
+	#wrapper{
+		width:350px;
+		height:350px;
+		overflow:hidden;
+	}
+}
+
+/* iPhone and iPod Touch Style Settings
+==================================== */
+@media only screen and (max-device-width: 480px){
+	body {
+		position:absolute;
+		width:320px;
+		height:416px;
+		overflow:hidden;
+	}
+	#wrapper{
+		width:320px;
+		height:320px;
+		overflow:hidden;
+	}
+	#JavaScriptObjectInstance, #JavaScriptObjectInstance_lazy{
+		margin:-20px 0 0 -15px;
+	}
+}
