@@ -9,3 +9,5 @@ The advantage of this solution lies in the offline rendering of the frames which
 h2. Project Info
 
 * *Website*: "http://finnrudolph.de/JavaScriptObject":http://finnrudolph.de/JavaScriptObject
+* *Installation*: "http://finnrudolph.de/JavaScriptObject/Installation":http://finnrudolph.de/JavaScriptObject/Installation
+* *Examples*: "http://finnrudolph.de/JavaScriptObject/Examples":http://finnrudolph.de/JavaScriptObject/Examples

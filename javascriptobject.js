@@ -1,6 +1,6 @@
 /*
 Name:       JavaScriptObject
-Version:    0.9.2 (Januar 02 2010)
+Version:    0.9.3 (Januar 02 2010)
 Author:     Finn Rudolph
 Support:    http://finnrudolph.de/JavaScriptObject
 
