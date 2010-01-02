@@ -1,10 +1,10 @@
 /*
 Name:       JavaScriptObject
-Version:    0.9.1 (August 11 2009)
+Version:    0.9.2 (Januar 02 2010)
 Author:     Finn Rudolph
 Support:    http://finnrudolph.de/JavaScriptObject
 
-Licence:    ImageFlow is licensed under a Creative Commons 
+License:    This Code is licensed under a Creative Commons 
             Attribution-Noncommercial 3.0 Unported License 
             (http://creativecommons.org/licenses/by-nc/3.0/).
 
@@ -21,7 +21,7 @@ Licence:    ImageFlow is licensed under a Creative Commons
             + Any of the above conditions can be waived if you get permission from the copyright holder.
             + Nothing in this license impairs or restricts the author's moral rights.
 
-Credits:    This script uses the JavaScriptObjectDomReadyEvent from Tanny O'Haley [1] and the 
+Credits:    This script uses the domReady function from Tanny O'Haley [1] and the 
             getElementsByClass function by Dustin Diaz [2].
 
             [1] http://tanny.ica.com/ICA/TKO/tkoblog.nsf/dx/domcontentloaded-for-browsers-part-v
@@ -32,7 +32,7 @@ Credits:    This script uses the JavaScriptObjectDomReadyEvent from Tanny O'Hale
 function JavaScriptObject ()
 {
 	/* Closure for this */
-	var thisObject = this;
+	var my = this;
 
 	/* Initiate JavaScriptObject */
 	this.init = function(objectID)
@@ -40,7 +40,7 @@ function JavaScriptObject ()
 		this.objectID = objectID;
 
 		/* Try to get JavaScriptObject image element */
-		var objectImage = document.getElementById(thisObject.objectID);
+		var objectImage = document.getElementById(my.objectID);
 		if(objectImage)
 		{
 			/* Extract image path, type and the row and col to start with from src attribute */
@@ -54,9 +54,11 @@ function JavaScriptObject ()
 			var startCol = parseFloat(imageFileName[imageFileName.length-1]);
 			imageType = imageType[imageType.length-1];
 
-			/* Evaluate settings from longdesc attribute */
+			/* Evaluate bool settings from longdesc attribute */
 			var objectSettings = objectImage.getAttribute('longdesc');
-			var settingsArray = ['inverseX', 'inverseY', 'lazy'];
+			var settingsArray = ['inverseX', 'inverseY', 'lazy', 'lock'];
+
+			/* Register all setting names as global variables and set them true/false */
 			var max = settingsArray.length;
 			for(var i=0; i < max; i++)
 			{
@@ -92,9 +94,9 @@ function JavaScriptObject ()
 			};
 
 			this.loadingFirstCheck = true;
-
+			
 			/* Display 'load object' link for lazy objects */
-			if(thisObject.lazy)
+			if(my.lazy)
 			{
 				this.Structure.lazy();
 			}
@@ -112,39 +114,39 @@ function JavaScriptObject ()
 		create: function()
 		{
 			/* Get parent node of the initial image element */
-			var parent = thisObject.Object.element.parentNode;
+			var parent = my.Object.element.parentNode;
 
 			/* Create images div container */
 			var imagesDiv = document.createElement('div');
-			imagesDiv.setAttribute('id',thisObject.objectID);
+			imagesDiv.setAttribute('id',my.objectID);
 			imagesDiv.setAttribute('class','javascriptobject');
 			imagesDiv.setAttribute('className','javascriptobject');
-			imagesDiv.style.width = thisObject.Object.width + 'px';
-			imagesDiv.style.height = thisObject.Object.height + 'px';
+			imagesDiv.style.width = my.Object.width + 'px';
+			imagesDiv.style.height = my.Object.height + 'px';
 
 			/* Replace initial image node by images div container */
-			parent.insertBefore(imagesDiv, thisObject.Object.element);
-			parent.removeChild(thisObject.Object.element);
+			parent.insertBefore(imagesDiv, my.Object.element);
+			parent.removeChild(my.Object.element);
 
 			/* Create a two dimensional array to handle the frames */
-			var frameArray = [thisObject.Object.resY];
-			for (var i=0; i < thisObject.Object.resY; i++)
+			var frameArray = [my.Object.resY];
+			for (var i=0; i < my.Object.resY; i++)
 			{
-				frameArray[i] = [thisObject.Object.resX];
+				frameArray[i] = [my.Object.resX];
 			}
 
 			/* Create all image elements within the imagesDiv */
 			var image = null;
 			var row_str = '';
-			for(var row = 0; row < thisObject.Object.resY; row++)
+			for(var row = 0; row < my.Object.resY; row++)
 			{
-				row_str = thisObject.Helper.leadingZero(row);
-				for(var col = 0; col < thisObject.Object.resX; col++)
+				row_str = my.Helper.leadingZero(row);
+				for(var col = 0; col < my.Object.resX; col++)
 				{
 					image = document.createElement('img');
-					image.setAttribute('src',thisObject.Object.path+row_str+'_'+thisObject.Helper.leadingZero(col)+'.'+thisObject.Object.type);
-					image.setAttribute('width',thisObject.Object.width);
-					image.setAttribute('height',thisObject.Object.height);
+					image.setAttribute('src',my.Object.path+row_str+'_'+my.Helper.leadingZero(col)+'.'+my.Object.type);
+					image.setAttribute('width',my.Object.width);
+					image.setAttribute('height',my.Object.height);
 					image.style.display = 'none';
 					imagesDiv.appendChild(image);
 					frameArray[row][col] = image;
@@ -154,18 +156,18 @@ function JavaScriptObject ()
 			/* Create loading text container */
 			var loadingP = document.createElement('p');
 			var loadingText = document.createTextNode(' ');
-			loadingP.setAttribute('id',thisObject.objectID+'_loading_txt');
+			loadingP.setAttribute('id',my.objectID+'_loading_txt');
 			loadingP.appendChild(loadingText);
 
 			/* Create loading div container */
 			var loadingDiv = document.createElement('div');
-			loadingDiv.setAttribute('id',thisObject.objectID+'_loading');
+			loadingDiv.setAttribute('id',my.objectID+'_loading');
 			loadingDiv.setAttribute('class','loading');
 			loadingDiv.setAttribute('className','loading');
 
 			/* Create loading bar div container inside the loading div */
 			var loadingBarDiv = document.createElement('div');
-			loadingBarDiv.setAttribute('id',thisObject.objectID+'_loading_bar');
+			loadingBarDiv.setAttribute('id',my.objectID+'_loading_bar');
 			loadingBarDiv.setAttribute('class','loading_bar');
 			loadingBarDiv.setAttribute('className','loading_bar');
 			loadingDiv.appendChild(loadingBarDiv);
@@ -175,36 +177,36 @@ function JavaScriptObject ()
 			imagesDiv.appendChild(loadingDiv);
 
 			/* Set globals */
-			thisObject.imagesDiv = document.getElementById(thisObject.objectID);
-			thisObject.loadingDiv = document.getElementById(thisObject.objectID+'_loading');
-			thisObject.loadingBar = document.getElementById(thisObject.objectID+'_loading_bar');
-			thisObject.loadingP = document.getElementById(thisObject.objectID+'_loading_txt');
+			my.imagesDiv = document.getElementById(my.objectID);
+			my.loadingDiv = document.getElementById(my.objectID+'_loading');
+			my.loadingBar = document.getElementById(my.objectID+'_loading_bar');
+			my.loadingP = document.getElementById(my.objectID+'_loading_txt');
 
 			/* Position the loading bar */
-			thisObject.loadingP.style.paddingTop = ((thisObject.imagesDiv.offsetHeight * 0.5) -30) + 'px';
+			my.loadingP.style.paddingTop = ((my.imagesDiv.offsetHeight * 0.5) -30) + 'px';
 
 			/* Proceed if structure creation was successful */
-			thisObject.frameArray = frameArray;
-			if(thisObject.frameArray.length > 0)
+			my.frameArray = frameArray;
+			if(my.frameArray.length > 0)
 			{
 				/* Initiate loading progress */
-				thisObject.Loading.init();
+				my.Loading.init();
 			}
 		},
 
 		lazy: function()
 		{
 			/* Get parent node of the initial image element */
-			var parent = thisObject.Object.element.parentNode;
+			var parent = my.Object.element.parentNode;
 
 			/* Create lazy div container */
 			var lazyDiv = document.createElement('div');
-			lazyDiv.setAttribute('id',thisObject.objectID+'_lazy');
+			lazyDiv.setAttribute('id',my.objectID+'_lazy');
 			lazyDiv.setAttribute('class','javascriptobject');
 			lazyDiv.setAttribute('className','javascriptobject');
 			lazyDiv.style.position = 'absolute';
-			lazyDiv.style.width = thisObject.Object.width + 'px';
-			lazyDiv.style.height = thisObject.Object.height + 'px';
+			lazyDiv.style.width = my.Object.width + 'px';
+			lazyDiv.style.height = my.Object.height + 'px';
 			lazyDiv.style.textAlign = 'center';
 			lazyDiv.style.zIndex = 1;
 
@@ -213,21 +215,21 @@ function JavaScriptObject ()
 			var lazyText = document.createTextNode('Load Object');
 			lazyLink.appendChild(lazyText);
 			lazyLink.setAttribute('href','');
-			lazyLink.style.height = thisObject.Object.height/2 + 'px';	
-			lazyLink.style.paddingTop = thisObject.Object.height/2 + 'px';	
+			lazyLink.style.height = my.Object.height/2 + 'px';	
+			lazyLink.style.paddingTop = my.Object.height/2 + 'px';	
 			lazyLink.appendChild(lazyText);
 
 			/* Set link behaviour */
 			lazyLink.onclick = function()
 			{
 				parent.removeChild(lazyDiv);
-				thisObject.Structure.create();
+				my.Structure.create();
 				return false;
 			};
 
 			/* Write to DOM */
 			lazyDiv.appendChild(lazyLink);
-			parent.insertBefore(lazyDiv, thisObject.Object.element);
+			parent.insertBefore(lazyDiv, my.Object.element);
 		}
 	};
 
@@ -236,73 +238,72 @@ function JavaScriptObject ()
 	{
 		init: function()
 		{
-			var p = thisObject.Loading.getStatus();
+			var p = my.Loading.getStatus();
 
-			if(p < 100 || thisObject.loadingFirstCheck === true)
+			if(p < 100 || my.loadingFirstCheck === true)
 			{
 				/* Insert a short delay if the browser loads rapidly from its cache */
-				if(thisObject.loadingFirstCheck === true && p == 100)
+				if(my.loadingFirstCheck === true && p == 100)
 				{
-					thisObject.loadingFirstCheck = false;
-					window.setTimeout(thisObject.Loading.init, 100);
+					my.loadingFirstCheck = false;
+					window.setTimeout(my.Loading.init, 100);
 				}
 				else
 				{
-					window.setTimeout(thisObject.Loading.init, 40);
+					window.setTimeout(my.Loading.init, 40);
 				}
 			}
 			else
 			{				
 				/* Hide loading elements */
-				thisObject.loadingP.style.display = 'none';
-				thisObject.loadingDiv.style.display = 'none';
+				my.loadingP.style.display = 'none';
+				my.loadingDiv.style.display = 'none';
 
 				/* Display start image */
-				thisObject.frameArray[thisObject.Object.startRow][thisObject.Object.startCol].style.display = 'block';
+				my.frameArray[my.Object.startRow][my.Object.startCol].style.display = 'block';
 	
 				/* Initialize core components */
-				thisObject.Mouse.init();
-				thisObject.Renderer.init();
+				my.Mouse.init();
+				my.Renderer.init();
 
 				/* Set Renderer to startRow and startCol */
-				thisObject.Renderer.row = thisObject.Object.startRow;
-				thisObject.Renderer.col = thisObject.Object.startCol;
+				my.Renderer.row = my.Object.startRow;
+				my.Renderer.col = my.Object.startCol;
 
 				/* Calculate corresponding mouse coordinates for startRow and startCol */
-				var stepX = thisObject.Object.width / (thisObject.Object.resX-1);
-				var stopX = Math.round( stepX * thisObject.Object.startCol );
+				var stepX = my.Object.width / (my.Object.resX-1);
+				var stopX = Math.round( stepX * my.Object.startCol );
+				
+				var stepY = my.Object.height / (my.Object.resY-1);
+				var stopY = Math.round( stepY * my.Object.startRow );
 
-				if(thisObject.Object.resY > 1)
-				{
-					var stepY = thisObject.Object.height / (thisObject.Object.resY-1);
-					var stopY = Math.round( stepY * thisObject.Object.startRow );
-				}
-				else
+				if(my.Object.resY < 1)
 				{
 					stopY = 0;
 				}
+				
 
 				/* Set mouse coordinates */
-				thisObject.Mouse.x = stopX;
-				thisObject.Mouse.y = stopY;
+				my.Mouse.x = stopX;
+				my.Mouse.y = stopY;
 
 				/* Inverse */
-				if(thisObject.inverseX){ stopX = -(stopX - thisObject.Object.width); }
-				if(thisObject.inverseY){ stopY = -(stopY - thisObject.Object.height); }
+				if(my.inverseX){ stopX = -(stopX - my.Object.width); }
+				if(my.inverseY){ stopY = -(stopY - my.Object.height); }
 
-				thisObject.Mouse.stopX = stopX;
-				thisObject.Mouse.stopY = stopY;	
+				my.Mouse.stopX = stopX;
+				my.Mouse.stopY = stopY;	
 			}
 		},
 
 		getStatus: function()
 		{
-			var max = thisObject.imagesDiv.childNodes.length;
+			var max = my.imagesDiv.childNodes.length;
 			var i = 0, completed = 0;
 			var image = null;
 			for(var index = 0; index < max; index++)
 			{
-				image = thisObject.imagesDiv.childNodes[index];
+				image = my.imagesDiv.childNodes[index];
 				if (image && image.nodeType == 1 && image.nodeName == 'IMG')
 				{
 					if (image.complete === true)
@@ -315,9 +316,9 @@ function JavaScriptObject ()
 
 			/* Set loading bar and text to actual progress */
 			var finished = Math.round((completed/i)*100);
-			thisObject.loadingBar.style.width = finished+'%';
+			my.loadingBar.style.width = finished+'%';
 			var loadingTxt = document.createTextNode('loading frames '+completed+'/'+i);
-			thisObject.loadingP.replaceChild(loadingTxt,thisObject.loadingP.firstChild);
+			my.loadingP.replaceChild(loadingTxt,my.loadingP.firstChild);
 
 			/* Return status */
 			return finished;
@@ -332,42 +333,42 @@ function JavaScriptObject ()
 		init: function()
 		{
 			/* Mouse events */
-			thisObject.Helper.addEvent(thisObject.imagesDiv,'mousedown',thisObject.Renderer.start);
-			thisObject.Helper.addEvent(document,'mouseup',thisObject.Renderer.stop);
+			my.Helper.addEvent(my.imagesDiv,'mousedown',my.Renderer.start);
+			my.Helper.addEvent(document,'mouseup',my.Renderer.stop);
 			
 			/* iPod Touch and iPhone events */
-			thisObject.Helper.addEvent(thisObject.imagesDiv,'touchstart',thisObject.Renderer.start);
-			thisObject.Helper.addEvent(document,'touchend',thisObject.Renderer.stop);
+			my.Helper.addEvent(my.imagesDiv,'touchstart',my.Renderer.start);
+			my.Helper.addEvent(document,'touchend',my.Renderer.stop);
 		},
 
 		start: function()
 		{
-			thisObject.Renderer.interval = window.setInterval(thisObject.Renderer.loop, 10);
+			my.Renderer.interval = window.setInterval(my.Renderer.loop, 10);
 		},
 
 		stop: function()
 		{	
-			window.clearInterval(thisObject.Renderer.interval);
+			window.clearInterval(my.Renderer.interval);
 		},
 
 		loop: function()
 		{
 			/* Rotate object */
-			thisObject.Renderer.rotate(thisObject.Mouse.x,thisObject.Mouse.y);
+			my.Renderer.rotate(my.Mouse.x,my.Mouse.y);
 		},
 		
 		rotate: function(x,y)
 		{
-			x = Math.round(x / (thisObject.Object.width / (thisObject.Object.resX-1)));
-			y = Math.round(y / (thisObject.Object.height / (thisObject.Object.resY-1)));
+			x = Math.round(x / (my.Object.width / (my.Object.resX-1)));
+			y = Math.round(y / (my.Object.height / (my.Object.resY-1)));
 			
 			/* Hide previous frame and display current */
-			thisObject.frameArray[thisObject.Renderer.row][thisObject.Renderer.col].style.display = 'none';
-			thisObject.frameArray[y][x].style.display = 'block';
+			my.frameArray[my.Renderer.row][my.Renderer.col].style.display = 'none';
+			my.frameArray[y][x].style.display = 'block';
 			
 			/* Set row and col to current */
-			thisObject.Renderer.col = x;
-			thisObject.Renderer.row = y;
+			my.Renderer.col = x;
+			my.Renderer.row = y;
 		}
 	};
 
@@ -385,122 +386,137 @@ function JavaScriptObject ()
 		init: function()
 		{
 			/* Mouse events */
-			thisObject.Helper.addEvent(thisObject.imagesDiv,'mousedown',thisObject.Mouse.start);
-			thisObject.Helper.addEvent(document,'mousemove',thisObject.Mouse.getPosition);
-			thisObject.Helper.addEvent(document,'mouseup',thisObject.Mouse.stop);
+			my.Helper.addEvent(my.imagesDiv,'mousedown',my.Mouse.start);
+			my.Helper.addEvent(document,'mousemove',my.Mouse.getPosition);
+			my.Helper.addEvent(document,'mouseup',my.Mouse.stop);
 			
 			/* iPod Touch and iPhone events */
-			thisObject.Helper.addEvent(thisObject.imagesDiv,'touchstart',thisObject.Mouse.start);
-			thisObject.Helper.addEvent(document,'touchmove',thisObject.Mouse.getPosition);
-			thisObject.Helper.addEvent(document,'touchend',thisObject.Mouse.stop);
+			my.Helper.addEvent(my.imagesDiv,'touchstart',my.Mouse.start);
+			my.Helper.addEvent(document,'touchmove',my.Mouse.getPosition);
+			my.Helper.addEvent(document,'touchend',my.Mouse.stop);
 			
 			/* Avoid text and image selection while dragging */
-			thisObject.Helper.addEvent(thisObject.imagesDiv,'selectstart',thisObject.Helper.suppressBrowserDefault);
-			thisObject.Helper.addEvent(thisObject.imagesDiv,'click',thisObject.Helper.suppressBrowserDefault);
+			my.Helper.addEvent(my.imagesDiv,'selectstart',my.Helper.suppressBrowserDefault);
+			my.Helper.addEvent(my.imagesDiv,'click',my.Helper.suppressBrowserDefault);
 		},
 
 		/* Get mouse position within image - left top corner is [0,0] */
 		getPosition: function(e)
 		{
-			if(thisObject.Mouse.busy === true)
+			if(my.Mouse.busy === true)
 			{
-				var newX = -(thisObject.Helper.mouseX(e) - thisObject.Mouse.startX - thisObject.Mouse.stopX);
-				var newY = -(thisObject.Helper.mouseY(e) - thisObject.Mouse.startY - thisObject.Mouse.stopY);
+				var newX = -(my.Helper.mouseX(e) - my.Mouse.startX - my.Mouse.stopX);
+				var newY = -(my.Helper.mouseY(e) - my.Mouse.startY - my.Mouse.stopY);
 
 				/* Inverse the rotation direction */
-				if(thisObject.inverseX){ newX = -(newX - thisObject.Object.width); }
-				if(thisObject.inverseY){ newY = -(newY - thisObject.Object.height); }
+				if(my.inverseX){ newX = -(newX - my.Object.width); }
+				if(my.inverseY){ newY = -(newY - my.Object.height); }
+				
+				/* Rotation is endless if the object is not locked */
+				var isEndless = (my.lock) ? false : true;
 				
 				/* Map x-axis mouse coordinates in range of the object width */
 				if(newX < 0)
 				{
-					if(thisObject.inverseX)
+					if(isEndless)
 					{
-						thisObject.Mouse.startX -= thisObject.Object.width;
-					}
-					else
-					{
-						thisObject.Mouse.startX += thisObject.Object.width;
+						if(my.inverseX)
+						{
+							my.Mouse.startX -= my.Object.width;
+						}
+						else
+						{
+							my.Mouse.startX += my.Object.width;
+						}
 					}
 					newX = 0;
 				}
-				if(newX > thisObject.Object.width)
+				if(newX > my.Object.width)
 				{
-					if(thisObject.inverseX)
+					if(isEndless)
 					{
-						thisObject.Mouse.startX += thisObject.Object.width;
+						if(my.inverseX)
+						{
+							my.Mouse.startX += my.Object.width;
+						}
+						else
+						{
+							my.Mouse.startX -= my.Object.width;
+						}
 					}
-					else
-					{
-						thisObject.Mouse.startX -= thisObject.Object.width;
-					}
-					newX = 0;
-				}
+					newX = my.Object.width;
+				}  
 
 				/* Map y-axis mouse coordinates in range of the object height */
 				if(newY < 0)
 				{
-					if(thisObject.inverseY)
+					if(isEndless)
 					{
-						thisObject.Mouse.startY -= thisObject.Object.height;
-					}
-					else
-					{
-						thisObject.Mouse.startY += thisObject.Object.height;
+						if(my.inverseY)
+						{
+							my.Mouse.startY -= my.Object.height;
+						}
+						else
+						{
+							my.Mouse.startY += my.Object.height;
+						}
 					}
 					newY = 0;
 				}
-				if(newY > thisObject.Object.height)
+				if(newY > my.Object.height)
 				{
-					if(thisObject.inverseY)
+					if(isEndless)
 					{
-						thisObject.Mouse.startY += thisObject.Object.height;
+						if(my.inverseY)
+						{
+							my.Mouse.startY += my.Object.height;
+						}
+						else
+						{
+							my.Mouse.startY -= my.Object.height;
+						}
 					}
-					else
-					{
-						thisObject.Mouse.startY -= thisObject.Object.height;
-					}
-					newY = 0;
+					newY = my.Object.height;
 				}
-				thisObject.Mouse.x = newX;
-				thisObject.Mouse.y = newY;
-				thisObject.Helper.suppressBrowserDefault(e);
+				my.Mouse.x = newX;
+				my.Mouse.y = newY;
+				my.Helper.suppressBrowserDefault(e);
 			}
 		},
 
 		start: function(e)
 		{
-			// Set closedhand cursor
-			thisObject.imagesDiv.style.cursor = 'url(cursor_closedhand.cur), move';	
+			/* Set closedhand cursor */
+			my.imagesDiv.style.cursor = 'url(cursor_closedhand.cur), move';	
 			
-			thisObject.Mouse.startX = thisObject.Helper.mouseX(e);
-			thisObject.Mouse.startY = thisObject.Helper.mouseY(e);
-			thisObject.Mouse.busy = true;
-			thisObject.Helper.suppressBrowserDefault(e);			
+			my.Mouse.startX = my.Helper.mouseX(e);
+			my.Mouse.startY = my.Helper.mouseY(e);
+			my.Mouse.busy = true;
+			my.Helper.suppressBrowserDefault(e);			
 		},
 
 		stop: function()
 		{
-			// Set openhand cursor
-			thisObject.imagesDiv.style.cursor = 'url(cursor_openhand.cur), move';
+			/* Set openhand cursor */
+			my.imagesDiv.style.cursor = 'url(cursor_openhand.cur), move';
 			
-			if(thisObject.inverseX)
+			if(my.inverseX)
 			{
-				thisObject.Mouse.stopX = -(thisObject.Mouse.x -thisObject.Object.width);
+				my.Mouse.stopX = -(my.Mouse.x -my.Object.width);
 			}
 			else
 			{
-				thisObject.Mouse.stopX = thisObject.Mouse.x;
+				my.Mouse.stopX = my.Mouse.x;
 			}
-			if(thisObject.inverseY)
+			if(my.inverseY)
 			{
-				thisObject.Mouse.stopY = -(thisObject.Mouse.y -thisObject.Object.height);
+				my.Mouse.stopY = -(my.Mouse.y -my.Object.height);
 			}
 			else
 			{
-				thisObject.Mouse.stopY = thisObject.Mouse.y;
+				my.Mouse.stopY = my.Mouse.y;
 			}
-			thisObject.Mouse.busy = false;
+			my.Mouse.busy = false;
 		}
 	};
 
